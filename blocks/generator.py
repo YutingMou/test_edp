@@ -8,7 +8,7 @@ class Generator:
         self.capacity = data["Capacity"]
         self.c2 = data["c2"]
         self.c1 = data["c1"]
-        self.c0 = data["c0"]  # start-up cost, assume to be 0 here
+        self.c0 = data["c0"]  # start-up cost, assumed to be 0 here
 
     def __lt__(self, other):
         return self.id < other.id

@@ -2,6 +2,7 @@ import pandas as pd
 
 from blocks.economic_dispatch import EconomicDispatch
 from blocks.generator import Generator
+from blocks.load import Load
 
 
 def import_data(file_path: str):
@@ -13,6 +14,8 @@ def import_data(file_path: str):
         edp.add_generator(generator)
 
     df_load = pd.read_excel(file_path, sheet_name="Load", index_col=[0])
-    edp.add_load(df_load.Load[1])  # only the first hour
+    for row_idx, row in df_load.iterrows():
+        load = Load(row_idx, row)
+        edp.add_load(load)
 
     return edp
